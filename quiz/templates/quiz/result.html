@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>測驗結果</title>
+    <style>
+        body {
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+            background-color: #f5f7fa;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+        .score {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+        }
+        .result-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2b7cff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="score">
+        <h1>測驗結果</h1>
+        <h2>得分：{{ score }} / {{ total }}</h2>
+    </div>
+
+    {% for item in results %}
+        <div class="result-card">
+            <h3>第 {{ forloop.counter }} 題</h3>
+            <p>{{ item.question.text }}</p>
+
+            {% if item.is_correct %}
+                <p class="correct">答對了！</p>
+            {% else %}
+                <p class="wrong">答錯了</p>
+            {% endif %}
+
+            <p>你的答案：
+                {% if item.selected_choice %}
+                    {{ item.selected_choice.text }}
+                {% else %}
+                    未作答
+                {% endif %}
+            </p>
+
+            <p>正確答案：{{ item.correct_choice.text }}</p>
+
+            {% if item.question.explanation %}
+                <p>詳解：{{ item.question.explanation }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <a href="/quiz/">再測一次</a>
+    <a href="/">回首頁</a>
+</div>
+</body>
+</html>

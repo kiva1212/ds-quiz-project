@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>開始測驗</title>
+    <style>
+        body {
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+            background-color: #f5f7fa;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+        .question-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+        }
+        .choice {
+            margin: 8px 0;
+        }
+        button {
+            padding: 12px 28px;
+            background-color: #2b7cff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .empty {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>資料結構測驗</h1>
+
+    {% if question_data %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="question_ids" value="{{ question_ids }}">
+
+            {% for item in question_data %}
+                <div class="question-card">
+                    <h3>第 {{ forloop.counter }} 題</h3>
+                    <p>{{ item.question.text }}</p>
+
+                    {% for choice in item.choices %}
+                        <div class="choice">
+                            <label>
+                                <input type="radio" name="question_{{ item.question.id }}" value="{{ choice.id }}" required>
+                                {{ choice.text }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit">送出答案</button>
+        </form>
+    {% else %}
+        <div class="empty">
+            <p>目前還沒有題目，請先到 Django Admin 新增題目。</p>
+            <a href="/admin/">前往後台</a>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
