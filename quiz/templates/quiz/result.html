@@ -81,8 +81,13 @@
         </div>
     {% endfor %}
 
-    <a href="/quiz/">再測一次</a>
-    <a href="/">回首頁</a>
+    <div class="buttons">
+            <a href="{% url 'quiz' %}">再測一次</a>
+            <a href="{% url 'answer_records' %}">查看作答記錄</a>
+            <a href="{% url 'wrong_review' %}">錯題複習模式</a>
+            <a href="{% url 'home' %}">回首頁</a>
+        </div>
+
 </div>
 </body>
 </html>

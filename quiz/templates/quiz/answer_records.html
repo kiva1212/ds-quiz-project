@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>作答記錄</title>
+</head>
+<body>
+    <h1>作答記錄</h1>
+
+    <p>
+        <a href="{% url 'quiz' %}">回到測驗</a> |
+        <a href="{% url 'wrong_review' %}">錯題複習模式</a>
+    </p>
+
+    {% if attempts %}
+        {% for attempt in attempts %}
+            <hr>
+            <h2>測驗時間：{{ attempt.created_at|date:"Y-m-d H:i" }}</h2>
+            <p>得分：{{ attempt.score }} / {{ attempt.total_questions }}</p>
+
+            {% for record in attempt.answer_records.all %}
+                <div style="margin-bottom: 20px;">
+                    <p><strong>題目：</strong>{{ record.question.text }}</p>
+                    <p><strong>我的答案：</strong>{{ record.selected_answer_text }}</p>
+                    <p><strong>正確答案：</strong>{{ record.correct_answer_text }}</p>
+
+                    {% if record.is_correct %}
+                        <p style="color: green;">結果：答對</p>
+                    {% else %}
+                        <p style="color: red;">結果：答錯</p>
+                    {% endif %}
+
+                    <p><strong>詳解：</strong>{{ record.question.explanation }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>目前還沒有作答記錄。</p>
+    {% endif %}
+</body>
+</html>

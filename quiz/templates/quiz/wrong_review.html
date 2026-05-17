@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>錯題複習模式</title>
+</head>
+<body>
+    <h1>錯題複習模式</h1>
+
+    <p>
+        <a href="{% url 'quiz' %}">回到測驗</a> |
+        <a href="{% url 'answer_records' %}">查看作答記錄</a>
+    </p>
+
+    {% if question_data %}
+        <form method="post">
+            {% csrf_token %}
+
+            <input type="hidden" name="question_ids" value="{{ question_ids }}">
+
+            {% for item in question_data %}
+                <hr>
+                <p>{{ forloop.counter }}. {{ item.question.text }}</p>
+
+                {% for choice in item.choices %}
+                    <label>
+                        <input type="radio" name="question_{{ item.question.id }}" value="{{ choice.id }}">
+                        {{ choice.text }}
+                    </label>
+                    <br>
+                {% endfor %}
+            {% endfor %}
+
+            <br>
+            <button type="submit">送出錯題複習</button>
+        </form>
+    {% else %}
+        <p>目前沒有錯題可以複習。</p>
+        <p>請先完成一次測驗，答錯的題目會出現在這裡。</p>
+    {% endif %}
+</body>
+</html>

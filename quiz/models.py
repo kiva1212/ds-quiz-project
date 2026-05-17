@@ -21,3 +21,36 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.text
+class QuizAttempt(models.Model):
+    session_key = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
+    total_questions = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"作答紀錄：{self.score}/{self.total_questions}"
+
+
+class AnswerRecord(models.Model):
+    attempt = models.ForeignKey(
+        QuizAttempt,
+        on_delete=models.CASCADE,
+        related_name="answer_records"
+    )
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.CASCADE
+    )
+    selected_choice = models.ForeignKey(
+        Choice,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    selected_answer_text = models.CharField(max_length=255, blank=True)
+    correct_answer_text = models.CharField(max_length=255)
+    is_correct = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.question.text[:20]} - {'答對' if self.is_correct else '答錯'}"
