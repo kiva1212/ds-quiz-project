@@ -3,37 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <title>資料結構測驗網站</title>
+
     <style>
         body {
-            font-family: Arial, "Microsoft JhengHei", sans-serif;
-            background-color: #f5f7fa;
-            text-align: center;
-            padding-top: 100px;
+            margin: 0;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            background: #f3f8fb;
+            color: #222;
         }
-        .box {
-            background: white;
-            width: 500px;
-            margin: auto;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: #2b7cff;
+
+        /* 上方導覽列 */
+        .topbar {
+            height: 80px;
+            background-color: #0f2f5f;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .site-title {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 左側選單 */
+        .sidebar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 180px;
+            height: calc(100vh - 64px);
+            background-color: #eef3f8;
+            border-right: 1px solid #d6dde5;
+            padding-top: 12px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px 22px;
+            color: #333;
             text-decoration: none;
-            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .sidebar a:hover {
+            background-color: #dfe9f5;
+            color: #0f2f5f;
+            font-weight: bold;
+        }
+
+        .sidebar .active {
+            background-color: #dfe9f5;
+            color: #0f2f5f;
+            font-weight: bold;
+        }
+
+        /* 主內容 */
+        .main {
+            margin-left: 180px;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .content {
+            max-width: 760px;
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        .welcome {
+            font-size: 34px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 14px;
+        }
+
+        .card {
+            background: white;
+            width: 620px;
+            margin: 0 auto;
+            padding: 22px 28px;
+            border-radius: 6px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+            text-align: left;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .start-btn {
+            display: block;
+            margin-top: 18px;
+            width: 100%;
+            padding: 13px 0;
+            background-color: #f05a24;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .start-btn:hover {
+            background-color: #d94d1d;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 120px;
+            }
+
+            .main {
+                margin-left: 120px;
+            }
+
+            .card {
+                width: 80%;
+            }
+
+            .welcome {
+                font-size: 28px;
+            }
+
+            .site-title {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="box">
-        <h1>資料結構主題測驗網站</h1>
-        <p>本網站提供資料結構選擇題練習，作答後會顯示分數與正確答案。</p>
-        <a href="/quiz/">開始測驗</a>
+    <!-- 上方標題列 -->
+    <div class="topbar">
+        <div class="site-title">資料結構測驗網站</div>
+    </div>
+
+    <!-- 左側選單 -->
+    <div class="sidebar">
+        <a href="{% url 'home' %}" class="active">首頁</a>
+        <a href="{% url 'quiz' %}">開始測驗</a>
+        <a href="{% url 'answer_records' %}">作答記錄</a>
+        <a href="{% url 'wrong_review' %}">錯題複習</a>
+        <a href="/admin/">題庫管理</a>
+        <a href="#">個人設定</a>
+    </div>
+
+    <!-- 主內容 -->
+    <div class="main">
+        <div class="content">
+            <div class="welcome">歡迎來到資料結構測驗網站</div>
+
+            <div class="section-title">測驗說明</div>
+
+            <div class="card">
+                歡迎使用本測驗網站！這裡提供資料結構相關的測驗題目，
+                包含陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
+                測驗作答後會顯示分數、正確答案與詳細解說，
+                並可透過作答記錄與錯題複習功能，加強不熟悉的觀念。
+
+                <a href="{% url 'quiz' %}" class="start-btn">測驗開始</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
