@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>資料結構測驗網站</title>
+    <title>資料結構主題測驗網站</title>
 
     <style>
         body {
@@ -12,9 +12,9 @@
             color: #222;
         }
 
-        /* 上方導覽列 */
+        /* 上方藍色標題列 */
         .topbar {
-            height: 80px;
+            height: 86px;
             background-color: #0f2f5f;
             color: white;
             display: flex;
@@ -29,18 +29,18 @@
         }
 
         .site-title {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         /* 左側選單 */
         .sidebar {
             position: fixed;
-            top: 64px;
+            top: 86px;
             left: 0;
             width: 180px;
-            height: calc(100vh - 64px);
+            height: calc(100vh - 86px);
             background-color: #eef3f8;
             border-right: 1px solid #d6dde5;
             padding-top: 12px;
@@ -48,10 +48,10 @@
 
         .sidebar a {
             display: block;
-            padding: 15px 22px;
+            padding: 16px 24px;
             color: #333;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 17px;
         }
 
         .sidebar a:hover {
@@ -69,65 +69,86 @@
         /* 主內容 */
         .main {
             margin-left: 180px;
-            padding-top: 80px;
+            padding-top: 86px;
             min-height: 100vh;
         }
 
         .content {
-            max-width: 760px;
-            margin: 80px auto;
+            max-width: 900px;
+            margin: 70px auto;
             text-align: center;
         }
 
         .welcome {
-            font-size: 34px;
+            font-size: 40px;
             font-weight: bold;
-            margin-bottom: 18px;
+            margin-bottom: 30px;
         }
 
         .section-title {
-            font-size: 23px;
+            font-size: 30px;
             font-weight: bold;
-            margin-bottom: 14px;
+            margin-bottom: 22px;
         }
 
         .card {
             background: white;
-            width: 620px;
+            width: 780px;
             margin: 0 auto;
-            padding: 22px 28px;
-            border-radius: 6px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+            padding: 35px 45px;
+            border-radius: 8px;
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
             text-align: left;
-            line-height: 1.8;
-            font-size: 15px;
+            line-height: 2;
+            font-size: 20px;
+        }
+
+        .quiz-setting {
+            margin-top: 25px;
+            margin-bottom: 18px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .quiz-setting label {
+            font-weight: bold;
+        }
+
+        .quiz-setting select {
+            padding: 8px 14px;
+            margin-left: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #bbb;
         }
 
         .start-btn {
             display: block;
-            margin-top: 18px;
+            margin-top: 20px;
             width: 100%;
-            padding: 13px 0;
+            padding: 16px 0;
             background-color: #f05a24;
             color: white;
             text-align: center;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
+            border-radius: 6px;
+            font-size: 22px;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
         }
 
         .start-btn:hover {
             background-color: #d94d1d;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .sidebar {
-                width: 120px;
+                width: 140px;
             }
 
             .main {
-                margin-left: 120px;
+                margin-left: 140px;
             }
 
             .card {
@@ -135,11 +156,11 @@
             }
 
             .welcome {
-                font-size: 28px;
+                font-size: 30px;
             }
 
             .site-title {
-                font-size: 20px;
+                font-size: 24px;
             }
         }
     </style>
@@ -148,7 +169,7 @@
 <body>
     <!-- 上方標題列 -->
     <div class="topbar">
-        <div class="site-title">資料結構測驗網站</div>
+        <div class="site-title">資料結構主題測驗網站</div>
     </div>
 
     <!-- 左側選單 -->
@@ -158,23 +179,39 @@
         <a href="{% url 'answer_records' %}">作答記錄</a>
         <a href="{% url 'wrong_review' %}">錯題複習</a>
         <a href="/admin/">題庫管理</a>
-        <a href="#">個人設定</a>
     </div>
 
     <!-- 主內容 -->
     <div class="main">
         <div class="content">
-            <div class="welcome">歡迎來到資料結構測驗網站</div>
+            <div class="welcome">歡迎來到資料結構主題測驗網站</div>
 
             <div class="section-title">測驗說明</div>
 
             <div class="card">
-                歡迎使用本測驗網站！這裡提供資料結構相關的測驗題目，
+                歡迎使用本資料結構主題測驗網站！這裡提供資料結構相關的測驗題目，
                 包含陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
-                測驗作答後會顯示分數、正確答案與詳細解說，
-                並可透過作答記錄與錯題複習功能，加強不熟悉的觀念。
+                學生可依需求選擇每次測驗 5 題、10 題、15 題或 20 題。
+                測驗作答後會顯示分數、正確答案與詳細解說，並可透過作答記錄與錯題複習功能，
+                加強不熟悉的觀念。系統也支援間隔學習法，曾經答錯的題目會在之後的正式測驗中優先再次出現，
+                幫助學生反覆練習與加深記憶。
 
-                <a href="{% url 'quiz' %}" class="start-btn">測驗開始</a>
+                <form method="get" action="{% url 'quiz' %}">
+                    <div class="quiz-setting">
+                        <label for="count">請選擇本次測驗題數：</label>
+
+                        <select name="count" id="count">
+                            <option value="5">5 題</option>
+                            <option value="10" selected>10 題</option>
+                            <option value="15">15 題</option>
+                            <option value="20">20 題</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="start-btn">
+                        測驗開始
+                    </button>
+                </form>
             </div>
         </div>
     </div>

@@ -50,9 +50,14 @@
 <body>
 <div class="container">
     <div class="score">
-        <h1>測驗結果</h1>
-        <h2>得分：{{ score }} / {{ total }}</h2>
-    </div>
+            {% if is_review %}
+                <h1>錯題複習結果</h1>
+                <h2>得分：{{ score }} / {{ total }}</h2>
+            {% else %}
+                <h1>測驗結果</h1>
+                <h2>得分：{{ score }} / 100（答對 {{ correct_count }} 題）</h2>
+            {% endif %}
+        </div>
 
     {% for item in results %}
         <div class="result-card">
