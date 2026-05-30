@@ -2,9 +2,21 @@ from django.db import models
 
 
 class Question(models.Model):
+    DIFFICULTY_CHOICES = [
+        ('easy', '易'),
+        ('medium', '中'),
+        ('hard', '難'),
+    ]
+
     chapter = models.CharField(max_length=100, verbose_name='章節')
     text = models.TextField(verbose_name='題目內容')
     explanation = models.TextField(blank=True, verbose_name='詳解')
+    difficulty = models.CharField(
+        max_length=10,
+        choices=DIFFICULTY_CHOICES,
+        default='medium',
+        verbose_name='難易度'
+    )
 
     def __str__(self):
         return self.text[:30]

@@ -38,6 +38,32 @@
             border-radius: 12px;
             text-align: center;
         }
+        .difficulty-badge {
+            display: inline-block;
+            margin-left: 12px;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* 易：綠色 */
+        .difficulty-easy {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        /* 中：黃色 */
+        .difficulty-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* 難：紅色 */
+        .difficulty-hard {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +82,13 @@
 
             {% for item in question_data %}
                 <div class="question-card">
-                    <h3>第 {{ forloop.counter }} 題</h3>
+                    <h3>
+                        第 {{ forloop.counter }} 題
+                        <span class="difficulty-badge difficulty-{{ item.question.difficulty}}">
+                            難度：{{ item.question.get_difficulty_display }}
+                        </span>
+                    </h3>
+
                     <p>{{ item.question.text }}</p>
 
                     {% for choice in item.choices %}
