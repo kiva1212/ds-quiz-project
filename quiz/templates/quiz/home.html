@@ -14,7 +14,7 @@
 
         /* 上方藍色標題列 */
         .topbar {
-            height: 86px;
+            height: 72px;
             background-color: #0f2f5f;
             color: white;
             display: flex;
@@ -29,7 +29,7 @@
         }
 
         .site-title {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: bold;
             letter-spacing: 3px;
         }
@@ -37,10 +37,10 @@
         /* 左側選單 */
         .sidebar {
             position: fixed;
-            top: 86px;
+            top: 72px;
             left: 0;
             width: 180px;
-            height: calc(100vh - 86px);
+            height: calc(100vh - 72px);
             background-color: #eef3f8;
             border-right: 1px solid #d6dde5;
             padding-top: 12px;
@@ -69,62 +69,84 @@
         /* 主內容 */
         .main {
             margin-left: 180px;
-            padding-top: 86px;
+            padding-top: 72px;
             min-height: 100vh;
         }
 
         .content {
-            max-width: 900px;
-            margin: 70px auto;
+            max-width: 850px;
+            margin: 28px auto;
             text-align: center;
         }
 
         .welcome {
-            font-size: 40px;
+            font-size: 34px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
         }
 
         .section-title {
-            font-size: 30px;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 22px;
+            margin-bottom: 16px;
         }
 
         /* 白色卡片 */
         .card {
             background: white;
-            width: 780px;
+            width: 680px;
             margin: 0 auto;
-            padding: 35px 45px;
+            padding: 22px 34px;
             border-radius: 8px;
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
             text-align: left;
-            line-height: 2;
-            font-size: 20px;
+            font-size: 16px;
         }
 
-        /* 三點式說明文字 */
+        /* 三點式說明 */
         .intro-list {
             text-align: left;
-            line-height: 2;
-            font-size: 20px;
+            line-height: 1.55;
+            font-size: 16px;
         }
 
-        .intro-list p {
-            margin-top: 0;
-            margin-bottom: 24px;
+        .intro-item {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            column-gap: 0;
+            margin-bottom: 6px;
         }
 
-        .intro-list strong {
+        .intro-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-number {
             color: #0f2f5f;
-            font-size: 22px;
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            text-align: right;
+            padding-right: 8px;
+        }
+
+        .intro-title {
+            color: #0f2f5f;
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .intro-desc {
+            font-size: 16px;
+            line-height: 1.55;
         }
 
         .quiz-setting {
-            margin-top: 25px;
-            margin-bottom: 18px;
-            font-size: 20px;
+            margin-top: 14px;
+            margin-bottom: 12px;
+            font-size: 18px;
             text-align: center;
         }
 
@@ -133,24 +155,24 @@
         }
 
         .quiz-setting select {
-            padding: 8px 14px;
+            padding: 7px 12px;
             margin-left: 10px;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 5px;
             border: 1px solid #bbb;
         }
 
         .start-btn {
             display: block;
-            margin-top: 20px;
+            margin-top: 12px;
             width: 100%;
-            padding: 16px 0;
+            padding: 12px 0;
             background-color: #f05a24;
             color: white;
             text-align: center;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             border: none;
             cursor: pointer;
@@ -208,21 +230,36 @@
 
             <div class="card">
                 <div class="intro-list">
-                    <p>
-                        <strong>1. 提供資料結構主題測驗</strong><br>
-                        題目涵蓋陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
-                    </p>
+                    <div class="intro-item">
+                        <div class="intro-number">1.</div>
+                        <div>
+                            <div class="intro-title">提供資料結構主題測驗</div>
+                            <div class="intro-desc">
+                                題目涵蓋陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
+                            </div>
+                        </div>
+                    </div>
 
-                    <p>
-                        <strong>2. 可自行選擇測驗題數</strong><br>
-                        學生可依需求選擇每次測驗 5 題、10 題、15 題或 20 題。
-                    </p>
+                    <div class="intro-item">
+                        <div class="intro-number">2.</div>
+                        <div>
+                            <div class="intro-title">可自行選擇測驗題數</div>
+                            <div class="intro-desc">
+                                學生可依需求選擇每次測驗 5 題、10 題、15 題或 20 題。
+                            </div>
+                        </div>
+                    </div>
 
-                    <p>
-                        <strong>3. 支援學習回饋與錯題複習</strong><br>
-                        測驗後會顯示分數、正確答案與解說，並透過作答記錄、錯題複習與間隔學習，
-                        幫助學生加強不熟悉的觀念。
-                    </p>
+                    <div class="intro-item">
+                        <div class="intro-number">3.</div>
+                        <div>
+                            <div class="intro-title">支援學習回饋與錯題複習</div>
+                            <div class="intro-desc">
+                                測驗後會顯示分數、正確答案與解說，並透過作答記錄、錯題複習與間隔學習，
+                                幫助學生加強不熟悉的觀念。
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <form method="get" action="{% url 'quiz' %}">
