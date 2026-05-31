@@ -91,6 +91,7 @@
             margin-bottom: 22px;
         }
 
+        /* 白色卡片 */
         .card {
             background: white;
             width: 780px;
@@ -101,6 +102,23 @@
             text-align: left;
             line-height: 2;
             font-size: 20px;
+        }
+
+        /* 三點式說明文字 */
+        .intro-list {
+            text-align: left;
+            line-height: 2;
+            font-size: 20px;
+        }
+
+        .intro-list p {
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        .intro-list strong {
+            color: #0f2f5f;
+            font-size: 22px;
         }
 
         .quiz-setting {
@@ -189,12 +207,23 @@
             <div class="section-title">測驗說明</div>
 
             <div class="card">
-                歡迎使用本資料結構主題測驗網站！這裡提供資料結構相關的測驗題目，
-                包含陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
-                學生可依需求選擇每次測驗 5 題、10 題、15 題或 20 題。
-                測驗作答後會顯示分數、正確答案與詳細解說，並可透過作答記錄與錯題複習功能，
-                加強不熟悉的觀念。系統也支援間隔學習法，曾經答錯的題目會在之後的正式測驗中優先再次出現，
-                幫助學生反覆練習與加深記憶。
+                <div class="intro-list">
+                    <p>
+                        <strong>1. 提供資料結構主題測驗</strong><br>
+                        題目涵蓋陣列、鏈結串列、堆疊、佇列、樹、圖形、排序與搜尋等單元。
+                    </p>
+
+                    <p>
+                        <strong>2. 可自行選擇測驗題數</strong><br>
+                        學生可依需求選擇每次測驗 5 題、10 題、15 題或 20 題。
+                    </p>
+
+                    <p>
+                        <strong>3. 支援學習回饋與錯題複習</strong><br>
+                        測驗後會顯示分數、正確答案與解說，並透過作答記錄、錯題複習與間隔學習，
+                        幫助學生加強不熟悉的觀念。
+                    </p>
+                </div>
 
                 <form method="get" action="{% url 'quiz' %}">
                     <div class="quiz-setting">
