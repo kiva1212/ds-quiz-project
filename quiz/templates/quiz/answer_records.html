@@ -16,7 +16,7 @@
         {% for attempt in attempts %}
             <hr>
             <h2>測驗時間：{{ attempt.created_at|date:"Y-m-d H:i" }}</h2>
-            <p>得分：{{ attempt.score }} / {{ attempt.total_questions }}</p>
+            <p>得分：{{ attempt.score }} / 100（本次測驗共 {{ attempt.total_questions }} 題）</p>
 
             {% for record in attempt.answer_records.all %}
                 <div style="margin-bottom: 20px;">

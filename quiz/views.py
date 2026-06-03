@@ -171,22 +171,16 @@ def quiz_view(request):
 
 
 def answer_records(request):
-    current_attempt_id = request.session.get('current_attempt_id')
+    session_key = get_session_key(request)
 
-    # 如果還沒完成正式測驗，就不顯示舊紀錄
-    if not current_attempt_id:
-        return render(request, 'quiz/answer_records.html', {
-            'attempts': [],
-        })
-
+    # 顯示這個瀏覽器目前所有正式測驗紀錄
     attempts = QuizAttempt.objects.filter(
-        id=current_attempt_id
-    ).prefetch_related('answer_records__question')
+        session_key=session_key
+    ).order_by('-created_at').prefetch_related('answer_records__question')
 
     return render(request, 'quiz/answer_records.html', {
         'attempts': attempts,
     })
-
 
 def wrong_review(request):
     current_attempt_id = request.session.get('current_attempt_id')
