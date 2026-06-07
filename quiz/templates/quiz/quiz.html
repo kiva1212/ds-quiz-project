@@ -89,7 +89,7 @@
                         </span>
                     </h3>
 
-                    <p>{{ item.question.text }}</p>
+                    <p class="question-text">{{ item.question.text|linebreaksbr }}</p>
 
                     {% for choice in item.choices %}
                         <div class="choice">

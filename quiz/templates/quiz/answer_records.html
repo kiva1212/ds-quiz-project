@@ -20,7 +20,10 @@
 
             {% for record in attempt.answer_records.all %}
                 <div style="margin-bottom: 20px;">
-                    <p><strong>題目：</strong>{{ record.question.text }}</p>
+                    <p>
+                        <strong>題目：</strong><br>
+                        {{ record.question.text|linebreaksbr }}
+                   </p>
                     <p><strong>我的答案：</strong>{{ record.selected_answer_text }}</p>
                     <p><strong>正確答案：</strong>{{ record.correct_answer_text }}</p>
 

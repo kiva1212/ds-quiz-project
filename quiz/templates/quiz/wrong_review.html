@@ -20,7 +20,10 @@
 
             {% for item in question_data %}
                 <hr>
-                <p>{{ forloop.counter }}. {{ item.question.text }}</p>
+                <p>
+                    {{ forloop.counter }}.
+                    {{ item.question.text|linebreaksbr }}
+               </p>
 
                 {% for choice in item.choices %}
                     <label>
